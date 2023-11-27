@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Flask-tabler-icons Demo</title>
+    <link href=" https://cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta20/dist/css/tabler.min.css " rel="stylesheet">
+    <style>
+      .red-icon {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+      <div class="container">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item"><a class="nav-link" href="https://github.com/lix/flask-tabler-icons" target="_blank">GitHub</a></li>
+        </ul>
+      </div>
+      </div>
+    </nav>
+    <main class="container">
+      {% from "tabler_icons.html" import render_icon %}
+
+      {{ render_icon("helicopter", color="blue", size=32) }}
+      {{ render_icon("helicopter", animation="pulse", color="blue", size=32) }}
+      {{ render_icon("helicopter", animation="tada", css_color="red") }}
+      {{ render_icon("helicopter", animation="rotate", color="blue") }}
+      <a href="#" class="btn btn-primary">{{ render_icon("check", class="me-1", animation="tada") }} Primary</a>
+
+      {{ render_icon("activity", size=36, animation="tada", css_color="blue") }}
+      {{ render_icon("brand-xbox", class="red-icon", size=48, animation="rotate") }}
+    </main>
+
+    <footer class="text-center">
+      <small> &copy; <script>document.write(new Date().getFullYear())</script> <a href="#">someone</a>
+      </small>
+    </footer>
+  </body>
+</html>
