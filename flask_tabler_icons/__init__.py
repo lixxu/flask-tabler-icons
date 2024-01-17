@@ -1,14 +1,16 @@
 #!/usr/bin/env python3
 # -*- coding=utf-8 -*-
 
+from typing import Any
+
 from flask import Blueprint, Flask
 
 # version is same as tabler-icons
-__version__ = "2.45.0"
+__version__ = "2.46.0"
 
 
 class TablerIcons:
-    def __init__(self, app: Flask | None = None) -> None:
+    def __init__(self, app: Any = None) -> None:
         if app is not None:
             self.init_app(app)
 

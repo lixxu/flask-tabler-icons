@@ -3,7 +3,7 @@ name = "flask-tabler-icons"
 authors = [{name="Lix Xu", email="xuzenglin@gmail.com"}]
 description = "a collection of macros for tabler icons"
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.8"
 license = {file = "LICENSE.txt"}
 keywords = ["tabler-icons"]
 classifiers = [
@@ -11,12 +11,8 @@ classifiers = [
     "License :: OSI Approved :: BSD License",
     "Operating System :: OS Independent",
 ]
-dependencies = [
-    "flask"
-]
-dynamic = [
-    "version"
-]
+dependencies = ["flask"]
+dynamic = ["version"]
 [tool.setuptools.dynamic]
 version = {attr = "flask_tabler_icons.__version__"}
 
