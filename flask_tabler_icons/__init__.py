@@ -6,7 +6,7 @@ from typing import Any
 from flask import Blueprint, Flask
 
 # version is same as tabler-icons
-__version__ = "2.47.0"
+__version__ = "3.1.0"
 
 
 class TablerIcons:
