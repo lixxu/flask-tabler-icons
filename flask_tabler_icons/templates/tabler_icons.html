@@ -18,12 +18,12 @@
   <span
     {% if class %}class="{{ class }}"{% endif %}
     {% if css_color or bold or style %}
-      style="{{ css_color }} {{ bold }} {{ style }}"
+      style="{{ css_color }}{{ bold }} {{ style }}"
     {% endif %}
     >
     <svg
       class="icon-tabler{{ animation_css }}"
-      width="{{ size or config.TABLER_ICON_SIZE}}" height="{{ size or config.TABLER_ICON_SIZE}}"
+      width="{{ size or config.TABLER_ICON_SIZE}}" height="{{ size or config.TABLER_ICON_SIZE }}"
       >
       <use href="{{ url_for('tabler_icons.static', filename='tabler-sprite.svg') }}#tabler-{{ icon }}" />
     </svg>
