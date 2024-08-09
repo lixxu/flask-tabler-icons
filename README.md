@@ -22,7 +22,7 @@ tabler_icons = TablerIcons(app)
 
 ```html
 
-{% from "tabler_icons.html" import render_icon %}
+{% from "tabler_icons/helper.html" import render_icon %}
 
 <html>
   <head>
