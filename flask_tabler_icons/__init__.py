@@ -4,9 +4,10 @@
 from typing import Any
 
 from flask import Blueprint, Flask
+from flask_assets import Bundle, Environment
 
 # version is same as tabler-icons
-__version__ = "3.28.1"
+__version__ = "3.30.0"
 
 
 class TablerIcons:
@@ -18,14 +19,28 @@ class TablerIcons:
         if not hasattr(app, "extensions"):
             app.extensions = {}
 
-        app.extensions["tabler_icons"] = self
+        app.extensions["flask_tabler_icons"] = self
         bp = Blueprint(
             "tabler_icons",
             __name__,
-            static_folder="static",
+            static_folder="static/tabler_icons",
             static_url_path=f"/tabler-icons{app.static_url_path}",
             template_folder="templates",
         )
         app.register_blueprint(bp)
-        app.jinja_env.globals["tabler_icons"] = self
+        app.jinja_env.globals["flask_tabler_icons"] = self
         app.config.setdefault("TABLER_ICON_SIZE", 24)
+
+        # use webassets for hosting
+        assets = Environment(app)
+
+        svg = Bundle("tabler_icons/tabler-sprite-nostroke.svg", output="gen/tabler-sprite-nostroke.svg")
+        assets.register("flask_tabler_icons_nostroke", svg)
+
+        svg = Bundle("tabler_icons/tabler-sprite-filled.svg", output="gen/tabler-sprite-filled.svg")
+        assets.register("flask_tabler_icons_filled", svg)
+
+        self.assets_url = dict(
+            filled=assets["flask_tabler_icons_filled"].urls()[0],
+            normal=assets["flask_tabler_icons_nostroke"].urls()[0],
+        )

@@ -6,26 +6,31 @@
   {% endif %}
 {% endmacro %}
 
-{% macro render_icon(icon, color="", bold=false, class="", style="", animation="", css_color="", size=0) %}
-  {% if css_color %}
-    {% set css_color = "color: %s;"|format(css_color) %}
-  {% endif %}
-  {% set bold = " font-weight: bold;" if bold else "" %}
-  {% set animation_css = fill_css(animation, ' icon-') %}
-  {% if color or class %}
-    {% set class = "%s %s"|format(class, ("text-" + color) if color else "") %}
-  {% endif %}
-  <span
-    {% if class %}class="{{ class }}"{% endif %}
-    {% if css_color or bold or style %}
-      style="{{ css_color }}{{ bold }} {{ style }}"
+{% macro render_icon(icon) %}
+  {% if icon %}
+    {% set class = "" %}
+    {% set bold = " font-weight: bold;" if kwargs.bold else "" %}
+    {% set animation_css = fill_css(kwargs.animation, ' icon-') %}
+    {% set css_color = "color: %s;"|format(kwargs.css_color) if kwargs.css_color else "" %}
+
+    {% if kwargs.color or kwargs.class %}
+      {% set class = "%s %s"|format(kwargs.class, ("text-" + kwargs.color) if kwargs.color else "") %}
     {% endif %}
-    >
-    <svg
-      class="icon-tabler{{ animation_css }}"
-      width="{{ size or config.TABLER_ICON_SIZE}}" height="{{ size or config.TABLER_ICON_SIZE }}"
+    {% set url_key = "filled" if "filled-" in icon else "normal" %}
+    <span
+      {% if class %}class="{{ class }}"{% endif %}
+      {% if css_color or bold or kwargs.style %}
+        style="{{ css_color }}{{ bold }} {{ kwargs.style or '' }} "
+      {% endif %}
       >
-      <use href="{{ url_for('tabler_icons.static', filename='tabler-sprite.svg') }}#tabler-{{ icon }}" />
-    </svg>
-  </span>
+      <svg
+        class="{% if kwargs.icon_size %} icon icon-{{ kwargs.icon_size }}{% endif %}
+        {{ animation_css }} {{ kwargs.svg_class or kwargs.icon_class or '' }}"
+        width="{{ kwargs.size or config.TABLER_ICON_SIZE}}"
+        height="{{ kwargs.size or config.TABLER_ICON_SIZE }}"
+        >
+        <use xlink:href="{{ flask_tabler_icons.assets_url[url_key] }}#tabler-{{ icon }}" />
+      </svg>
+    </span>
+  {% endif %}
 {% endmacro %}
