@@ -111,3 +111,4 @@ ENV/
 # Other
 .DS_Store
 *.bat
+*.sh

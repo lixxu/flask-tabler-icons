@@ -7,7 +7,7 @@ from flask import Blueprint, Flask
 from flask_assets import Bundle, Environment
 
 # version is same as tabler-icons
-__version__ = "3.30.0"
+__version__ = "3.31.0"
 
 
 class TablerIcons:
@@ -27,9 +27,9 @@ class TablerIcons:
             static_url_path=f"/tabler-icons{app.static_url_path}",
             template_folder="templates",
         )
-        app.register_blueprint(bp)
         app.jinja_env.globals["flask_tabler_icons"] = self
         app.config.setdefault("TABLER_ICON_SIZE", 24)
+        app.register_blueprint(bp)
 
         # use webassets for hosting
         assets = Environment(app)
@@ -39,7 +39,6 @@ class TablerIcons:
 
         svg = Bundle("tabler_icons/tabler-sprite-filled.svg", output="gen/tabler-sprite-filled.svg")
         assets.register("flask_tabler_icons_filled", svg)
-
         self.assets_url = dict(
             filled=assets["flask_tabler_icons_filled"].urls()[0],
             normal=assets["flask_tabler_icons_nostroke"].urls()[0],

@@ -5,7 +5,7 @@ description = "a collection of jinja macros for tabler icons"
 readme = "README.md"
 requires-python = ">=3.8"
 license = { file = "LICENSE.txt" }
-keywords = ["flask_tabler", "flask_tabler_icons"]
+keywords = ["flask_tabler_icons"]
 classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: BSD License",
@@ -22,11 +22,15 @@ version = { attr = "flask_tabler_icons.__version__" }
 "Bug Tracker" = "https://github.com/lixxu/flask-tabler-icons/issues"
 
 [build-system]
-requires = ["setuptools>=61.0"]
+requires = ["setuptools>=61.0", "wheel", "cython"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools]
-include-package-data = true
+# include-package-data = true
+py-modules = ["_custom_build"]
+
+[tool.setuptools.cmdclass]
+build_py = "_custom_build.build_py"
 
 [tool.setuptools.packages.find]
 where = ["."]
