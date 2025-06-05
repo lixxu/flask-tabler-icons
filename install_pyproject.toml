@@ -4,12 +4,13 @@ authors = [{ name = "Lix Xu", email = "xuzenglin@gmail.com" }]
 description = "a collection of jinja macros for tabler icons"
 readme = "README.md"
 requires-python = ">=3.8"
-license = { file = "LICENSE.txt" }
-keywords = ["flask_tabler_icons"]
+keywords = ["flask_tabler", "flask_tabler_icons"]
+license-files = ["LICENSE.txt"]
 classifiers = [
-    "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: BSD License",
+    "Intended Audience :: Developers",
     "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Development Status :: 5 - Production/Stable",
 ]
 dependencies = ["flask", "flask_assets"]
 dynamic = ["version"]
