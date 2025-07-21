@@ -7,7 +7,7 @@ from flask import Blueprint, Flask
 from flask_assets import Bundle, Environment
 
 # version is same as tabler-icons
-__version__ = "3.34.0"
+__version__ = "3.34.1"
 
 
 class TablerIcons:
