@@ -7,7 +7,7 @@ from flask import Flask
 from flask_topassets import TopAssets
 
 # version is same as tabler-icons
-__version__ = "3.34.1.20250911"
+__version__ = "3.35.0.20250916"
 CLASS_NAME = "TablerIcons"
 
 
