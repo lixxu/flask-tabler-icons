@@ -12,16 +12,19 @@
     {% set bold = " font-weight: bold;" if kwargs.bold else "" %}
     {% set animation_css = fill_css(kwargs.animation, ' icon-') %}
     {% set css_color = "color: %s;"|format(kwargs.css_color) if kwargs.css_color else "" %}
+    {% set tag = kwargs.tag or "span" %}
 
     {% if kwargs.color or kwargs.class %}
       {% set class = "%s %s"|format(kwargs.class, ("text-" + kwargs.color) if kwargs.color else "") %}
     {% endif %}
-    <span
-      {% if class %}class="{{ class }}"{% endif %}
-      {% if css_color or bold or kwargs.style %}
-        style="{{ css_color }}{{ bold }} {{ kwargs.style or '' }} "
-      {% endif %}
+    {% if not kwargs.hide_tag %}
+      <{{ tag }}
+        {% if class %}class="{{ class }}"{% endif %}
+        {% if css_color or bold or kwargs.style %}
+          style="{{ css_color }}{{ bold }} {{ kwargs.style or '' }} "
+        {% endif %}
       >
+    {% endif %}
       {% if kwargs.svg %}
         {{ render_svg(kwargs.svg, icon_size=kwargs.icon_size, **(kwargs.svg_kw or {})) }}
       {% else %}
@@ -32,10 +35,10 @@
           width="{{ kwargs.size or config.TABLER_ICON_SIZE}}"
           height="{{ kwargs.size or config.TABLER_ICON_SIZE }}"
           >
-          <use xlink:href="{{ tabler_icons.assets_url[url_key] }}#tabler-{{ icon }}" />
+          <use xlink:href="{{ tabler_icons.get_url(url_key) }}#tabler-{{ icon }}" />
         </svg>
       {% endif %}
-    </span>
+    {% if not kwargs.hide_tag %}</{{ tag }}>{% endif %}
   {% endif %}
 {% endmacro %}
 
